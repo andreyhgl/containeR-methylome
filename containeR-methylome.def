@@ -1,0 +1,54 @@
+Bootstrap: docker
+From: bioconductor/bioconductor_docker:devel
+
+%labels
+  Author https://github.com/andreyhgl
+
+%environment
+  export LC_ALL=C
+
+%post
+  # Install less
+  apt-get update && apt-get install -y less
+  
+  # Clean up apt cache to reduce image size
+  apt-get clean
+  rm -rf /var/lib/apt/lists/*
+
+# ~~ install R libraries ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ #
+
+# from CRAN
+cat << EOF > pkgs-CRAN.txt
+tidyverse
+gt
+DT
+gtools
+tools
+scales
+data.table
+ggrepel
+forcats
+RColorBrewer
+cowplot
+ggsignif
+openxlsx
+patchwork
+readr
+EOF
+
+R -e "install.packages(readLines('pkgs-CRAN.txt'))"
+
+# from Bioconductor
+cat << EOF > pkgs-Bioc.txt
+methylKit
+tximport
+biomaRt
+genomation
+org.Mm.eg.db
+org.Hs.eg.db
+EOF
+
+R -e "BiocManager::install(readLines('pkgs-Bioc.txt'))"
+
+%runscript
+  Rscript "$@"
