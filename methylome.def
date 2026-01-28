@@ -8,9 +8,21 @@ From: bioconductor/bioconductor_docker:devel
   export LC_ALL=C
 
 %post
-  # Install less
-  apt-get update && apt-get install -y less
+  apt-get update
   
+  # Install less
+  apt-get install -y less
+
+  # qpdf (for parallisation of producing PDFs in R, plotting)
+  apt-get install -y qpdf
+  
+  # install Quarto 1.8.27
+  wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.8.27/quarto-1.8.27-linux-amd64.deb
+  apt-get install -y ./quarto-1.8.27-linux-amd64.deb
+
+  # Clean up apt cache to reduce image size
+  rm quarto-1.8.27-linux-amd64.deb
+
   # Clean up apt cache to reduce image size
   apt-get clean
   rm -rf /var/lib/apt/lists/*
@@ -27,22 +39,24 @@ tools
 scales
 data.table
 ggrepel
-forcats
+ggvenn
 RColorBrewer
 cowplot
 ggsignif
 openxlsx
 patchwork
-readr
 EOF
 
 R -e "install.packages(readLines('pkgs-CRAN.txt'))"
 
 # from Bioconductor
 cat << EOF > pkgs-Bioc.txt
+clusterProfiler
+ReactomePA
 methylKit
 tximport
 biomaRt
+ComplexHeatmap
 genomation
 org.Mm.eg.db
 org.Hs.eg.db
