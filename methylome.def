@@ -58,6 +58,8 @@ tximport
 biomaRt
 ComplexHeatmap
 genomation
+BSgenome.Hsapiens.UCSC.hg38
+BSgenome.Mmusculus.UCSC.mm39
 org.Mm.eg.db
 org.Hs.eg.db
 EOF

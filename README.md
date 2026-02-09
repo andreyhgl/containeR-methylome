@@ -29,6 +29,8 @@ This repository holds a singularity / apptainer image with pre-installed **_R_**
 + [clusterProfiler](https://www.bioconductor.org/packages/release/bioc/html/clusterProfiler.html)
 + [ReactomePA](https://bioconductor.org/packages/release/bioc/html/ReactomePA.html)
 + biomaRt
++ [BSgenome.Hsapiens.UCSC.hg38](https://bioconductor.org/packages//release/data/annotation/html/BSgenome.Hsapiens.UCSC.hg38.html)
++ [BSgenome.Mmusculus.UCSC.mm39](https://bioconductor.posit.co/packages/release/data/annotation/html/BSgenome.Mmusculus.UCSC.mm39.html)
 + [org.Mm.eg.db](https://bioconductor.org/packages/release/data/annotation/html/org.Mm.eg.db.html)
 + [org.Hs.eg.db](https://bioconductor.org/packages/release/data/annotation/html/org.Hs.eg.db.html)
 + tximport
